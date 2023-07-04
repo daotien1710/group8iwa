@@ -29,7 +29,7 @@ with st.container():
         - **Category**: A factor with levels of Medicine, Physics, Peace, Literature, Chemistry, and Economics (Categories of the Nobel Prize)
         - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
         - **Birth Date**: The date on which Nobel Prize winners were born
-        - **Death Date**: The date on which Nobel Prize winners passed away
+        - **Death Date**: The date on which Nobel Prize winners passed away """)
     
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
