@@ -16,7 +16,6 @@ with st.container():
     st.write("Apart from their achievements, join us today on this app to get to know the Laureates' Birth Countries and Average Lifespan!" ) 
 
 # OUR DATASET
-st.divider()
 url = "https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates?resource=download"
 with st.container():
     st.write("---")
@@ -30,6 +29,10 @@ with st.container():
         \n - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
         \n - **Birth Date**: The date on which Nobel Prize winners were born
         \n - **Death Date**: The date on which Nobel Prize winners passed away """)
+
+st.divider()
+st.header("Top Birth Countries and Life Span Chart")
+st.write("Discover these two graphs below")
     
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
