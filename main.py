@@ -32,7 +32,7 @@ with st.container():
 
 st.divider()
 st.header("Top Birth Countries and Life Span Chart")
-st.write("Discover these two graphs below")
+st.write("Discover these two graphs below with us")
     
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
