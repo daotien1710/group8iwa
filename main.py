@@ -7,7 +7,7 @@ import plotly.express as px
 data = pd.read_csv('nospaces.csv')
 
 # Set the page configuration
-st.set_page_config(page_title = "Project Python 2", page_icon = ":megaphone:", layout="wide")
+st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
 
 # HEADER SECTION
 with st.container():
