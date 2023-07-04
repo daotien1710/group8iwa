@@ -4,7 +4,7 @@ import altair as alt
 import plotly.express as px
 
 # Read the data from CSV
-data = pd.read_csv('nospaces.csv')
+data = pd.read_csv('archive.csv')
 
 # Set the page configuration
 st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
