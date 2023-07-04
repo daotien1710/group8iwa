@@ -11,9 +11,9 @@ st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout
 
 # HEADER SECTION
 with st.container():
-    st.subheader("Hi:wave: we're 5 students from group 8 class Business IT 2!")
+    st.subheader("Hi:wave: we're from group 8 class Business IT2")
     st.title("What is there more to know about Nobel Prize Winners?")
-    st.write("Apart from their profound achievement and life-changing impacts, are you curious about where do they come from, or how long do they live on average? Join us today to learn more!") 
+    st.write("Apart from their achievements; join us today to know about the Laureates' Birth Countries and Average Lifespan!" ) 
 
 # OUR DATASET
 st.divider()
