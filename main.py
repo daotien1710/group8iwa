@@ -13,7 +13,7 @@ st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout
 with st.container():
     st.subheader("Hi:wave: we're from group 8 class Business IT2")
     st.title("What is there more to know about Nobel Prize Winners?")
-    st.write("Apart from their achievements; join us today to know about the Laureates' Birth Countries and Average Lifespan!" ) 
+    st.write("Apart from their achievements, join us today on this app to get to know the Laureates' Birth Countries and Average Lifespan!" ) 
 
 # OUR DATASET
 st.divider()
