@@ -22,8 +22,8 @@ with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
     with left_column: st.header("Our dataset")
-    st.subheader("The original dataset can be accessed through this [link](%s)" & url)
-
+    st.markdown(f"[Click here to see the original dataset]({url})")
+    
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 
