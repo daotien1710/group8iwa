@@ -24,10 +24,11 @@ with st.container():
     st.markdown(f"[Click here to see the original dataset]({url})")
     st.write("##")
     st.write(
-        """ Our refined data frame contains 3 main variables as follows:
+        """ Our refined data frame contains 4 main variables as follows:
         \n - **Category**: A factor with levels of Medicine, Physics, Peace, Literature, Chemistry, and Economics (Categories of the Nobel Prize)
+        \n - **Number of Prizes**: A vector that counts the number of Prizes received
         \n - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
-        \n - **Age**: The age of Nobel Prize Winners using the subtraction of Death Year to Birth Year """)
+        \n - **Age**: A vector that illustrates the age of Nobel Prize Winners using the subtraction of Death Year to Birth Year """)
 
 st.divider()
 st.header("Top Birth Countries and Life Span Chart")
