@@ -7,7 +7,7 @@ import plotly.express as px
 data = pd.read_csv('nospaces.csv')
 
 # Set the page configuration
-st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
+st.set_page_config(page_title = "Project Python 2", page_icon = ":megaphone:", layout="wide")
 
 # HEADER SECTION
 with st.container():
@@ -21,7 +21,7 @@ url = "https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates?resource=
 with st.container():
     st.write("---")
     left_column, right_column = st.columns(2)
-    with left_column: st.header("Our dataset")
+    with left_column: st.header("Our dataset :sparkles:")
     st.markdown(f"[Click here to see the original dataset]({url})")
     st.write("##")
     st.write(
