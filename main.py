@@ -101,7 +101,5 @@ else:
     selected_data = data_sorted.loc[data["Category"] == category_selection]
 
 fig_selected = px.box(selected_data, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-tab2.plotly_chart(fig_selected, use_container_width=True)
-med_age = data.groupby('Category')['Age'].median().sort_values()
-sorted_categories = med_age.index.tolist()
+
 fig_update_layout(xaxis=dict(categoryorder='array', categoryarray=sorted_categories))
