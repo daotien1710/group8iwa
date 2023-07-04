@@ -7,10 +7,22 @@ import plotly.express as px
 data = pd.read_csv('nospaces.csv')
 
 # Set the page configuration
-st.set_page_config(layout="wide")
+st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
 
-# Define the layout of the app
-st.title("Project Python 2")
+# HEADER SECTION
+with st.container():
+    st.subheader("Hi:wave: we're 5 students from group 8 class Business IT 2!")
+    st.title("What is there more to know about Nobel Prize Winners?")
+    st.write("Apart from their profound achievement and life-changing impacts, are you curious about where do they come from, or how long do they live on average? Join us today to learn more!") 
+
+# OUR DATASET
+st.divider()
+url = "https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates?resource=download"
+with st.container():
+    st.write("---")
+    left_column, right_column = st.columns(2)
+    with left_column: st.header("Our dataset")
+    st.subheader("The original dataset can be accessed through this [link](%s)" & url)
 
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
