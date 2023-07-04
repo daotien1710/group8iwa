@@ -23,6 +23,13 @@ with st.container():
     left_column, right_column = st.columns(2)
     with left_column: st.header("Our dataset")
     st.markdown(f"[Click here to see the original dataset]({url})")
+    st.write("##")
+    st.write(
+        """ Our refined data frame contains 4 main variables as follows:
+        - **Category**: A factor with levels of Medicine, Physics, Peace, Literature, Chemistry, and Economics (Categories of the Nobel Prize)
+        - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
+        - **Birth Date**: The date on which Nobel Prize winners were born
+        - **Death Date**: The date on which Nobel Prize winners passed away
     
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
