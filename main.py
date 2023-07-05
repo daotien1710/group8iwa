@@ -15,13 +15,6 @@ with st.container():
     st.title("What is there more to know about Nobel Prize Winners?")
     st.write("Apart from their achievements, join us today on this app to get to know the Laureates' Birth Countries and Average Lifespan!" ) 
 
-
-# MENU SECTION
-menu = ["Dataset", "Charts"]
-choice = st.sidebar.selectbox("Menu", menu)
-
-if choice == 'Dataset':
-    
 # OUR DATASET
 url = "https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates?resource=download"
 with st.container():
@@ -32,18 +25,14 @@ with st.container():
     st.write("##")
     st.write(
         """ Our refined data frame contains 4 main variables as follows:
-        \n - **Category**: A factor with levels of Medicine, Physics, Peace, Literature, Chemistry, and Economics (Categories of the Nobel Prize)
-        \n - **Number of Prizes**: A vector that counts the number of Prizes received
-        \n - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
-        \n - **Age**: A vector that illustrates the age of Nobel Prize Winners using the subtraction of Death Year to Birth Year """)
+        \n - *Category*: A factor with levels of Medicine, Physics, Peace, Literature, Chemistry, and Economics (Categories of the Nobel Prize)
+        \n - *Number of Prizes*: A vector that counts the number of Prizes received
+        \n - *Birth Country*: A factor that notes the birth countries of Nobel Laureates
+        \n - *Age*: A vector that illustrates the age of Nobel Prize Winners using the subtraction of Death Year to Birth Year """)
 
-if choice == 'Charts':
-    st.divider()
+st.divider()
 st.header("Top Birth Countries and Life Span Chart")
 st.write("Discover these two graphs below with us")
-
-    
-
 
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
