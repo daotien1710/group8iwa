@@ -9,6 +9,13 @@ data = pd.read_csv('archive.csv')
 # Set the page configuration
 st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
 
+# MENU SECTION
+menu = ["Dataset", "Charts"]
+choice = st.sidebar.selectbox("Menu", menu)
+
+if choice == 'Dataset':
+    st.subheader('Dataset')
+
 # HEADER SECTION
 with st.container():
     st.subheader("Hi:wave: we're from group 8 class Business IT2")
