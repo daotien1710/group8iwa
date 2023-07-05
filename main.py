@@ -9,19 +9,19 @@ data = pd.read_csv('archive.csv')
 # Set the page configuration
 st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout="wide")
 
-# MENU SECTION
-menu = ["Dataset", "Charts"]
-choice = st.sidebar.selectbox("Menu", menu)
-
-if choice == 'Dataset':
-    st.subheader('Dataset')
-
 # HEADER SECTION
 with st.container():
     st.subheader("Hi:wave: we're from group 8 class Business IT2")
     st.title("What is there more to know about Nobel Prize Winners?")
     st.write("Apart from their achievements, join us today on this app to get to know the Laureates' Birth Countries and Average Lifespan!" ) 
 
+
+# MENU SECTION
+menu = ["Dataset", "Charts"]
+choice = st.sidebar.selectbox("Menu", menu)
+
+if choice == 'Dataset':
+    
 # OUR DATASET
 url = "https://www.kaggle.com/datasets/nobelfoundation/nobel-laureates?resource=download"
 with st.container():
@@ -37,10 +37,14 @@ with st.container():
         \n - **Birth Country**: A factor that notes the birth countries of Nobel Laureates
         \n - **Age**: A vector that illustrates the age of Nobel Prize Winners using the subtraction of Death Year to Birth Year """)
 
-st.divider()
+if choice == 'Charts':
+    st.divider()
 st.header("Top Birth Countries and Life Span Chart")
 st.write("Discover these two graphs below with us")
+
     
+
+
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 
