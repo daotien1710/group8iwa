@@ -105,7 +105,7 @@ physics_med_chem = data_sorted[data_sorted['Category'].isin(['Physics', 'Medicin
 lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
 
 # Add the title of the plot
-st.subheader("Lifespan of Nobel Winners")
+tab2.subheader("Lifespan of Nobel Winners")
 
 # Create two columns for displaying the boxplots
 col1, col2 = st.columns(2)
