@@ -34,6 +34,13 @@ st.divider()
 st.header("Top Birth Countries and Life Span Chart")
 st.write("Discover these two graphs below with us")
 
+#Add Sidebar
+
+st.sidebar.['Hello']
+with st.sidebar:
+    st.['Hello']
+
+
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 
@@ -86,6 +93,7 @@ data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
 
 data['Age'] = data['Death_Year'] - data['Birth_Year']
 
+
 # Sort the data by Age in ascending order
 data_sorted = data.sort_values(by='Age', ascending=True)
 
@@ -102,19 +110,22 @@ category_colors = {
 # Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
+# Initialize the session state object
+if "active_tab" not in st.session_state:
+    st.session_state.active_tab = "Bar Chart"
+
 # Create two columns for displaying the boxplots
 col1, col2 = st.columns(2)
 
 # Specify that the following code should only be displayed in tab2
-with col1:
-    if st.session_state.active_tab == "Boxplot Chart":
+if st.session_state.active_tab == "Boxplot Chart":
+    with col1:
         # Create a subset of data for Physics, Medicine, and Chemistry categories
-        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
+        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Physics', 'Medicine', 'Chemistry'])]
         fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
         st.plotly_chart(fig1, use_container_width=True)
 
-with col2:
-    if st.session_state.active_tab == "Boxplot Chart":
+    with col2:
         # Create a subset of data for Literature, Peace, and Economics categories
         lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
         fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
