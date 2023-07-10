@@ -113,4 +113,9 @@ else:
 fig_selected = px.box(selected_data, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
 tab2.plotly_chart(fig_selected, use_container_width=True)
 
-c1,c2 = st.columns((1,1))
+col1, col2 = st.beta_columns(2)
+with col1:
+    st.plotly_chart(figselected, use_container_width=True)
+
+with col2:
+    st.plotly_chart(figselected, use_container_width=True)
