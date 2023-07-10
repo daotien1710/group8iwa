@@ -34,11 +34,13 @@ st.divider()
 st.header("Top Birth Countries and Life Span Chart")
 st.write("Discover these two graphs below with us")
 
-#Add Sidebar
 
-st.sidebar.['Hello']
+# Add Sidebar
+st.sidebar.write('Hello')
+
+# Add content to the main area
 with st.sidebar:
-    st.['Hello']
+    st.write('Hello')
 
 
 # Initial 2 tabs for each interactive graph
