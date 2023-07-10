@@ -108,14 +108,14 @@ lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace'
 tab2.subheader("Lifespan of Nobel Winners")
 
 # Create two columns for displaying the boxplots
-col1, col2 = st.columns(2)
+col1, col2 = tab2.columns(2)
 
 # Draw the first boxplot in the first column
 with col1:
     fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    st.plotly_chart(fig1, use_container_width=True)
+    tab2.plotly_chart(fig1, use_container_width=True)
 
 # Draw the second boxplot in the second column
 with col2:
     fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    st.plotly_chart(fig2, use_container_width=True)
+    tab2.plotly_chart(fig2, use_container_width=True)
