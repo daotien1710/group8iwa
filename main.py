@@ -101,7 +101,7 @@ category_colors = {
 }
 
 # Create two subsets of data based on categories
-physics_med_chem = data_sorted[data_sorted['Category'].isin(['Physics', 'Medicine', 'Chemistry'])]
+physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
 lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
 
 # Add the title of the plot
