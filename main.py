@@ -86,6 +86,7 @@ data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
 
 data['Age'] = data['Death_Year'] - data['Birth_Year']
 
+
 # Sort the data by Age in ascending order
 data_sorted = data.sort_values(by='Age', ascending=True)
 
@@ -99,23 +100,22 @@ category_colors = {
     'Economic Sciences': '#29B09D'
 }
 
+# Create two subsets of data based on categories
+physics_med_chem = data_sorted[data_sorted['Category'].isin(['Physics', 'Medicine', 'Chemistry'])]
+lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economic Sciences'])]
+
 # Add the title of the plot
-tab2.subheader("Lifespan of Nobel Winners")
+st.subheader("Lifespan of Nobel Winners")
 
-# Add the selection box
-category_selection = tab2.selectbox("Select a category", options=["All"] + list(data_sorted["Category"].unique()), index=0)
-
-if category_selection == 'All':
-    selected_data = data_sorted
-else:
-    selected_data = data_sorted.loc[data["Category"] == category_selection]
-
-fig_selected = px.box(selected_data, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-tab2.plotly_chart(fig_selected, use_container_width=True)
-
+# Create two columns for displaying the boxplots
 col1, col2 = st.beta_columns(2)
-with col1:
-    st.plotly_chart(fig_selected, use_container_width=True)
 
+# Draw the first boxplot in the first column
+with col1:
+    fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+    st.plotly_chart(fig1, use_container_width=True)
+
+# Draw the second boxplot in the second column
 with col2:
-    st.plotly_chart(fig_selected, use_container_width=True)
+    fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+    st.plotly_chart(fig2, use_container_width=True)
