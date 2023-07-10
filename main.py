@@ -99,22 +99,23 @@ category_colors = {
     'Economic Sciences': '#29B09D'
 }
 
-# Create two subsets of data based on categories
-physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Medicine', 'Physics'])]
-lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
-
 # Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
 # Create two columns for displaying the boxplots
 col1, col2 = st.columns(2)
 
-# Draw the first boxplot in the first column
+# Specify that the following code should only be displayed in tab2
 with col1:
-    fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    st.plotly_chart(fig1, use_container_width=True)
+    if st.session_state.active_tab == "Boxplot Chart":
+        # Create a subset of data for Physics, Medicine, and Chemistry categories
+        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
+        fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        st.plotly_chart(fig1, use_container_width=True)
 
-# Draw the second boxplot in the second column
 with col2:
-    fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    st.plotly_chart(fig2, use_container_width=True)
+    if st.session_state.active_tab == "Boxplot Chart":
+        # Create a subset of data for Literature, Peace, and Economics categories
+        lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
+        fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        st.plotly_chart(fig2, use_container_width=True)
