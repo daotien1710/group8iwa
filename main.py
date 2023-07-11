@@ -50,13 +50,13 @@ with st.sidebar:
 
 current_tab = st.sidebar.radio("Navigation", ["Bar Chart", "Boxplot Chart"])
 
-# Initial 2 tabs for each interactive graph
-tab1 = st.tab("Bar Chart", selected=current_tab=="Bar Chart")
-tab2 = st.tab("Boxplot Chart", selected=current_tab=="Boxplot Chart")
-
 # Get the current URL
 url = st.experimental_get_query_params()
 current_tab = url["tab"][0] if "tab" in url else "Bar Chart"
+
+# Initial 2 tabs for each interactive graph
+tab1 = st.tab("Bar Chart", selected=current_tab=="Bar Chart")
+tab2 = st.tab("Boxplot Chart", selected=current_tab=="Boxplot Chart")
 
 ### TAB 1: BAR CHART
 if current_tab == "Bar Chart":
