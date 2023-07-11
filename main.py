@@ -11,7 +11,7 @@ st.set_page_config(page_title = "Project Python 2", page_icon = ":tada:", layout
 
 # HEADER SECTION
 with st.container():
-    st.subheader("Hi:wave: we're from group 8 class Business IT2")
+    st.subheader("Hi:wave: we're from group 4 class Business IT2")
     st.title("What is there more to know about Nobel Prize Winners?")
     st.write("Apart from their achievements, join us today on this app to get to know the Laureates' Birth Countries and Average Lifespan!" ) 
 
@@ -36,11 +36,11 @@ st.write("Discover these two graphs below with us")
 
 
 # Add Sidebar
-st.sidebar.write('Hello')
+st.sidebar.write('**Group 4 Business IT 2 Members:**')
 
 # Add content to the main area
 with st.sidebar:
-    st.write('Hello')
+    st.write('*Ta Nguyen Minh Hang*')
 
 
 # Initial 2 tabs for each interactive graph
