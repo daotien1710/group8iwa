@@ -52,7 +52,7 @@ with st.sidebar:
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 
 ### TAB 1: BAR CHART
-if current_tab == "Bar Chart":
+
 # Calculate the value counts of Birth_Country
     df = data['Birth_Country'].value_counts()
 
@@ -91,7 +91,7 @@ if current_tab == "Bar Chart":
     tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
-elif current_tab == "Boxplot Chart":    
+  
     data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
     data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
     data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
