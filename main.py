@@ -36,8 +36,8 @@ st.write("Discover these two graphs below with us")
 
 
 # Add Sidebar
-st.sidebar.write('**Reporting to Dr. Tan Duc Do**')
-st.sidebar.write('**Group 4 Business IT 2 Members:**')
+st.sidebar.write('**:bulb: Reporting to Dr. Tan Duc Do**')
+st.sidebar.write('**:bulb: Group 4 Business IT 2 Members:**')
 
 # Add content to the main area
 with st.sidebar:
