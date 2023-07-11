@@ -102,12 +102,11 @@ if current_tab == "Boxplot Chart":
   data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
   data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
   data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
-
   data['Age'] = data['Death_Year'] - data['Birth_Year']
 
 
 # Sort the data by Age in ascending order
-data_sorted = data.sort_values(by='Age', ascending=True)
+  data_sorted = data.sort_values(by='Age', ascending=True)
 
 # Create a palette color for categories
 category_colors = {
@@ -116,7 +115,7 @@ category_colors = {
     'Medicine': '#A5D7E8',
     'Literature': '#0068C9',
     'Peace': '#D4ADFC',
-    'Economic Sciences': '#29B09D'
+    'Economics': '#29B09D'
 }
 
 # Add the title of the plot
