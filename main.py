@@ -48,7 +48,8 @@ with st.sidebar:
     st.write('Pham Dan Thao')
     st.write('Nguyen Ai Nhi')
 
-current_tab = st.session_state.get("current_tab", "Bar Chart")
+current_tab = st.sidebar.radio("Navigation", ["Boxplot Chart", "Bar Chart"])
+
 
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
