@@ -117,7 +117,7 @@ category_colors = {
     # Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
-  col1, col2, col3 = tab2.columns([1.5,2,3.5])
+col1, col2, col3 = tab2.columns([1.5,2,3.5])
 with col1:
     age_type = st.radio("Choose a value you want to look for 👇",
                         ["Oldest Age", "Median Age", "Youngest Age"],
