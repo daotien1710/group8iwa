@@ -96,43 +96,41 @@ bars = bars.configure_axisX(labelAngle=0)
 tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
+### TAB 2: BOXPLOT CHART
 if current_tab == "Boxplot Chart":    
-  data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
-  data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
-  data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
-  data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
-  data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
-  data['Age'] = data['Death_Year'] - data['Birth_Year']
+    data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
+    data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
+    data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
+    data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
+    data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
+    data['Age'] = data['Death_Year'] - data['Birth_Year']
 
+    # Sort the data by Age in ascending order
+    data_sorted = data.sort_values(by='Age', ascending=True)
 
-# Sort the data by Age in ascending order
-  data_sorted = data.sort_values(by='Age', ascending=True)
+    # Create a palette color for categories
+    category_colors = {
+        'Physics': '#7DEFA1',
+        'Chemistry': '#FF2B2B',
+        'Medicine': '#A5D7E8',
+        'Literature': '#0068C9',
+        'Peace': '#D4ADFC',
+        'Economics': '#29B09D'
+    }
 
-# Create a palette color for categories
-category_colors = {
-    'Physics': '#7DEFA1',
-    'Chemistry': '#FF2B2B',
-    'Medicine': '#A5D7E8',
-    'Literature': '#0068C9',
-    'Peace': '#D4ADFC',
-    'Economics': '#29B09D'
-}
+    # Add the title of the plot
+    tab2.subheader("Lifespan of Nobel Winners")
 
-# Add the title of the plot
-tab2.subheader("Lifespan of Nobel Winners")
+    # Create two columns for displaying the boxplots
+    col1, col2 = st.columns(2)
+    with col1:
+        # Create a subset of data for Physics, Medicine, and Chemistry categories
+        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
+        fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        st.plotly_chart(fig1, use_container_width=True)
 
-# Create two columns for displaying the boxplots
-col1, col2 = st.columns(2)
-with col1:
-# Create a subset of data for Physics, Medicine, and Chemistry categories
- physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
- fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
- st.plotly_chart(fig1, use_container_width=True)
-
-with col2:
- # Create a subset of data for Literature, Peace, and Economics categories
-   lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
-   fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-   st.plotly_chart(fig2, use_container_width=True)
-
-
+    with col2:
+        # Create a subset of data for Literature, Peace, and Economics categories
+        lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
+        fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        st.plotly_chart(fig2, use_container_width=True)
