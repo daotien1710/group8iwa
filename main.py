@@ -122,10 +122,10 @@ with col1:
         # Create a subset of data for Physics, Medicine, and Chemistry categories
         physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
         fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        tab2.plotly_chart(fig1, use_container_width=True)
+        tab2.plotly_chart(fig1, use_container_width=True, grid = True)
 
 with col2:
         # Create a subset of data for Literature, Peace, and Economics categories
         lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
         fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        tab2.plotly_chart(fig2, use_container_width=True)
+        tab2.plotly_chart(fig2, use_container_width=True, grid = True)
