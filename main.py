@@ -48,7 +48,7 @@ with st.sidebar:
     st.write('Pham Dan Thao')
     st.write('Nguyen Ai Nhi')
 
-current_tab = st.sidebar.radio("Navigation", ["Boxplot Chart", "Bar Chart"])
+current_tab = st.sidebar.radio("Navigation", ["Bar Chart", "Boxplot Chart"])
 
 
 # Initial 2 tabs for each interactive graph
@@ -98,7 +98,7 @@ if current_tab == "Bar Chart":
     tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
-if current_tab == "Boxplot Chart":    
+elif current_tab == "Boxplot Chart":    
     data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
     data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
     data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
