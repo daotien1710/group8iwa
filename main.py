@@ -54,41 +54,41 @@ tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 ### TAB 1: BAR CHART
 
 # Calculate the value counts of Birth_Country
-    df = data['Birth_Country'].value_counts()
+df = data['Birth_Country'].value_counts()
 
 # Set the initial value for the slider
-    value = 5
+value = 5
 
 # Get the top N countries with the most prizes
-    df1 = df.nlargest(n=value, keep='all')
+df1 = df.nlargest(n=value, keep='all')
 
 # Define color palette for the bars
-    color1 = ["#19376D", "#576CBC", "#A5D7E8", "#66347F", "#9E4784", "#D27685", "#D4ADFC", "#F2F7A1", "#FB2576", "#E94560"]
+color1 = ["#19376D", "#576CBC", "#A5D7E8", "#66347F", "#9E4784", "#D27685", "#D4ADFC", "#F2F7A1", "#FB2576", "#E94560"]
 
 # Add the slider
-    value = tab1.slider("Number of Countries", min_value=1, max_value=10, step=1, value=value)
+value = tab1.slider("Number of Countries", min_value=1, max_value=10, step=1, value=value)
 
 # Update the top N countries based on the slider value
-    df1 = df.nlargest(n=value, keep='all')
-    color1 = color1[:len(df1)]
+df1 = df.nlargest(n=value, keep='all')
+color1 = color1[:len(df1)]
 
 # Update the title of the plot
-    tab1.subheader("Top {} Countries That Had The Most Nobel Prize Winners".format(value))
+tab1.subheader("Top {} Countries That Had The Most Nobel Prize Winners".format(value))
 
 # Create the bar chart using Altair
-    bar_data = pd.DataFrame({"Country": df1.index, "Number of Prizes": df1.values, "Color": color1})
-    bars = alt.Chart(bar_data).mark_bar().encode(
-      x=alt.X('Country', sort=None),
-      y=alt.Y('Number of Prizes'),
-      color=alt.Color('Color', scale=None),
-      tooltip=['Country', 'Number of Prizes']
+bar_data = pd.DataFrame({"Country": df1.index, "Number of Prizes": df1.values, "Color": color1})
+bars = alt.Chart(bar_data).mark_bar().encode(
+x=alt.X('Country', sort=None),
+y=alt.Y('Number of Prizes'),
+color=alt.Color('Color', scale=None),
+tooltip=['Country', 'Number of Prizes']
        ).properties(width=1400)
 
 # Rotate x-axis labels for better readability
-    bars = bars.configure_axisX(labelAngle=0)
+bars = bars.configure_axisX(labelAngle=0)
 
 # Display the chart using Streamlit
-    tab1.altair_chart(bars, use_container_width=True)
+tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
   
