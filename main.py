@@ -117,25 +117,36 @@ category_colors = {
     # Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
-    # Create two columns for displaying the boxplots
-# Create two columns for displaying the boxplots
-col1, col2 = st.columns(2)
+  col1, col2, col3 = tab2.columns([1.5,2,3.5])
 with col1:
-    # Create a subset of data for Physics, Medicine, and Chemistry categories
-    physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
-    fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    fig1.update_layout(showlegend=False)  # Remove legend from the first plot
-    st.plotly_chart(fig1, use_container_width=True)
-
-    # Add label below the first boxplot
-    st.subheader("Natural Sciences")
-
+    age_type = st.radio("Choose a value you want to look for 👇",
+                        ["Oldest Age", "Median Age", "Youngest Age"],
+                        key="Age type")
 with col2:
-    # Create a subset of data for Literature, Peace, and Economics categories
-    lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
-    fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-    fig2.update_layout(showlegend=False)  # Remove legend from the second plot
-    st.plotly_chart(fig2, use_container_width=True)
+    rank = st.selectbox("Rank", ("HIGHEST", "LOWEST"))
+with col3:
+    st.write("You would like to see the {} value of the {}.".format(rank, age_type))
 
-    # Add label below the second boxplot
-    st.subheader("Social Sciences")
+# Create a container for displaying the boxplots
+with tab2.container():
+    # Create two columns for displaying the boxplots
+    box1, box2 = tab2.columns(2)
+    with box1:
+        # Create a subset of data for Physics, Medicine, and Chemistry categories
+        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
+        fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        fig1.update_layout(showlegend=False)  # Remove legend from the first plot
+        st.plotly_chart(fig1, use_container_width=True)
+
+        # Add label below the first boxplot
+        st.subheader("Natural Sciences")
+
+    with box2:
+        # Create a subset of data for Literature, Peace, and Economics categories
+        lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
+        fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+        fig2.update_layout(showlegend=False)  # Remove legend from the second plot
+        st.plotly_chart(fig2, use_container_width=True)
+
+        # Add label below the second boxplot
+        st.subheader("Social Sciences")
