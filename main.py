@@ -59,7 +59,7 @@ current_tab = url["tab"][0] if "tab" in url else "Bar Chart"
 ### TAB 1: BAR CHART
 if current_tab == "Bar Chart":
 # Calculate the value counts of Birth_Country
-df = data['Birth_Country'].value_counts()
+    df = data['Birth_Country'].value_counts()
 
 # Set the initial value for the slider
 value = 5
