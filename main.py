@@ -138,7 +138,7 @@ with tab2.container():
         fig1.update_layout(showlegend=False)  # Remove legend from the first plot
          # Specify the order of categories in the x-axis
         fig1.update_xaxes(categoryorder='array', categoryarray=['Chemistry', 'Physics', 'Medicine'])
-        st.plotly_chart(fig1, use_container_width=True)st.plotly_chart(fig1, use_container_width=True)
+        st.plotly_chart(fig1, use_container_width=True)
 
         # Add label below the first boxplot
         st.subheader("Natural Sciences")
