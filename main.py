@@ -97,7 +97,7 @@ tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
 if current_tab == "Boxplot Chart":
-# Processing data 
+    
 data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
 data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
 
