@@ -3,6 +3,7 @@ import streamlit as st
 import altair as alt
 import plotly.express as px
 import urllib.parse
+import plotly.graph_objects as go
 
 # Read the data from CSV
 data = pd.read_csv('archive.csv')
@@ -121,11 +122,14 @@ col1, col2 = st.columns(2)
 with col1:
         # Create a subset of data for Physics, Medicine, and Chemistry categories
         physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
-        fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        tab2.plotly_chart(fig1, use_container_width=True, grid = True)
+       fig1 = go.Figure(data=px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors).data)
+       fig1.update_layout(grid=dict(rows=1, columns=2), height=400, width=800)
 
 with col2:
         # Create a subset of data for Literature, Peace, and Economics categories
         lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
-        fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        tab2.plotly_chart(fig2, use_container_width=True, grid = True)
+        fig2 = go.Figure(data=px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors).data)
+        fig2.update_layout(grid=dict(rows=1, columns=2), height=400, width=800)
+    
+tab2.plotly_chart(fig1, use_container_width=True)
+tab2.plotly_chart(fig2, use_container_width=True)
