@@ -136,7 +136,9 @@ with tab2.container():
         physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
         fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
         fig1.update_layout(showlegend=False)  # Remove legend from the first plot
-        st.plotly_chart(fig1, use_container_width=True)
+         # Specify the order of categories in the x-axis
+        fig1.update_xaxes(categoryorder='array', categoryarray=['Chemistry', 'Physics', 'Medicine'])
+        st.plotly_chart(fig1, use_container_width=True)st.plotly_chart(fig1, use_container_width=True)
 
         # Add label below the first boxplot
         st.subheader("Natural Sciences")
