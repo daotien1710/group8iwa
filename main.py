@@ -96,7 +96,6 @@ bars = bars.configure_axisX(labelAngle=0)
 tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
-### TAB 2: BOXPLOT CHART
 if current_tab == "Boxplot Chart":    
     data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
     data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
@@ -105,9 +104,10 @@ if current_tab == "Boxplot Chart":
     data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
     data['Age'] = data['Death_Year'] - data['Birth_Year']
 
+    
     # Sort the data by Age in ascending order
     data_sorted = data.sort_values(by='Age', ascending=True)
-
+    
     # Create a palette color for categories
     category_colors = {
         'Physics': '#7DEFA1',
