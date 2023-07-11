@@ -128,7 +128,7 @@ with col1:
     st.plotly_chart(fig1, use_container_width=True)
 
     # Add label below the first boxplot
-    st.subheader("Physics, Medicine, and Chemistry")
+    st.subheader("Natural Sciences")
 
 with col2:
     # Create a subset of data for Literature, Peace, and Economics categories
@@ -138,4 +138,4 @@ with col2:
     st.plotly_chart(fig2, use_container_width=True)
 
     # Add label below the second boxplot
-    st.subheader("Literature, Peace, and Economics")
+    st.subheader("Social Sciences")
