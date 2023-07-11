@@ -148,6 +148,7 @@ with tab2.container():
         lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
         fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
         fig2.update_layout(showlegend=False)  # Remove legend from the second plot
+        fig1.update_xaxes(categoryorder='array', categoryarray=['Peace', 'Literature', 'Economics'])
         st.plotly_chart(fig2, use_container_width=True)
 
         # Add label below the second boxplot
