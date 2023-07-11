@@ -99,12 +99,11 @@ tab1.altair_chart(bars, use_container_width=True)
 if current_tab == "Boxplot Chart":    
   data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
   data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
+  data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
+  data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
+  data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
 
-data["Birth_Year"] = pd.to_numeric(data["Birth_Year"], errors='coerce')
-data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
-data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
-
-data['Age'] = data['Death_Year'] - data['Birth_Year']
+  data['Age'] = data['Death_Year'] - data['Birth_Year']
 
 
 # Sort the data by Age in ascending order
