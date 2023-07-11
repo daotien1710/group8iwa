@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 import altair as alt
 import plotly.express as px
+import urllib.parse
 
 # Read the data from CSV
 data = pd.read_csv('archive.csv')
@@ -51,7 +52,12 @@ with st.sidebar:
 # Initial 2 tabs for each interactive graph
 tab1, tab2 = st.tabs(["Bar Chart", "Boxplot Chart"])
 
+# Get the current URL
+url = st.experimental_get_query_params()
+current_tab = url["tab"][0] if "tab" in url else "Bar Chart"
+
 ### TAB 1: BAR CHART
+if current_tab == "Bar Chart":
 # Calculate the value counts of Birth_Country
 df = data['Birth_Country'].value_counts()
 
@@ -90,6 +96,7 @@ bars = bars.configure_axisX(labelAngle=0)
 tab1.altair_chart(bars, use_container_width=True)
 
 ### TAB 2: BOXPLOT CHART
+if current_tab == "Boxplot Chart":
 # Processing data for the chart
 data[['Birth_Year', 'Birth_Month', 'Birth_Day']] = data.Birth_Date.str.split("-", expand=True)
 data[['Death_Day', 'Death_Month', 'Death_Year']] = data.Death_Date.str.split("/", expand=True)
@@ -117,8 +124,7 @@ category_colors = {
 # Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
-# Specify that the following code should only be displayed in Tab 2
-if st.session_state.active_tab == "Boxplot Chart":
+
     # Create two columns for displaying the boxplots
     col1, col2 = st.columns(2)
 
