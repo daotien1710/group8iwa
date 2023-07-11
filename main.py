@@ -36,13 +36,12 @@ st.write("Discover these two graphs below with us")
 
 
 # Add Sidebar
-st.sidebar.write('*Reporting to Dr. Tan Duc Do*'
-                 /n
-**Group 4 Business IT 2 Members:**')
+st.sidebar.write('*Reporting to Dr. Tan Duc Do*')
+st.sidebar.write('**Group 4 Business IT 2 Members:**')
 
 # Add content to the main area
 with st.sidebar:
-    st.write('*Ta Nguyen Minh Hang*')
+    st.write('Ta Nguyen Minh Hang')
 
 
 # Initial 2 tabs for each interactive graph
