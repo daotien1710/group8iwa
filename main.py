@@ -167,9 +167,13 @@ with tab2.container():
                 category = data.groupby('Category')['Age'].min().idxmin()
         return category
     
-    # Create two columns for displaying the boxplots
+   # Create two columns for displaying the boxplots
     box1, box2 = tab2.columns(2)
     with box1:
+        # Add label above the first boxplot
+        st.subheader("Natural Sciences")
+        
+        # Display the first boxplot
         if overview:
             fig1 = px.box(nat, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
             fig1.update_layout(showlegend=False)  # Remove legend from the first plot
@@ -181,10 +185,12 @@ with tab2.container():
 
         st.plotly_chart(fig1, use_container_width=True)
 
-        # Add label below the first boxplot
-        st.subheader("Natural Sciences")
 
     with box2:
+        # Add label above the second boxplot
+        st.subheader("Social Sciences")
+
+        # Display the second boxplot
         if overview:
             fig2 = px.box(soc, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
             fig2.update_layout(showlegend=False)  # Remove legend from the second plot
@@ -195,6 +201,3 @@ with tab2.container():
             fig2.update_layout(showlegend=False)  # Remove legend from the second plot
 
         st.plotly_chart(fig2, use_container_width=True)
-
-        # Add label below the second boxplot
-        st.subheader("Social Sciences")
