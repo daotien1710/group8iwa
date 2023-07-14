@@ -100,55 +100,100 @@ data["Death_Year"] = pd.to_numeric(data["Death_Year"], errors='coerce')
 data["Year"] = pd.to_numeric(data["Year"], errors='coerce')
 data['Age'] = data['Death_Year'] - data['Birth_Year']
 
-    
-    # Sort the data by Age in ascending order
+ 
+# Sort the data by Age in ascending order
 data_sorted = data.sort_values(by='Age', ascending=True)
-    
-    # Create a palette color for categories
-category_colors = {
-        'Physics': '#7DEFA1',
-        'Chemistry': '#FF2B2B',
-        'Medicine': '#A5D7E8',
-        'Literature': '#0068C9',
-        'Peace': '#D4ADFC',
-        'Economics': '#29B09D'
-    }
+# Create a subset of data for Physics, Medicine, and Chemistry categories
+nat = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
+# Create a subset of data for Literature, Peace, and Economics categories
+soc = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
 
-    # Add the title of the plot
+# Create a palette color for categories
+category_colors = {
+    'Physics': '#7DEFA1',
+    'Chemistry': '#FF2B2B',
+    'Medicine': '#A5D7E8',
+    'Literature': '#0068C9',
+    'Peace': '#D4ADFC',
+    'Economics': '#29B09D'
+}
+
+# Add the title of the plot
 tab2.subheader("Lifespan of Nobel Winners")
 
-col1, col2, col3 = tab2.columns([1.5,2,3.5])
+# Store the initial value of widgets in session state
+if "disabled" not in st.session_state:
+    st.session_state.disabled = False
+
+col1, col2, col3 = tab2.columns([2,2,3])
 with col1:
+    overview = st.checkbox("Overview of all categories", key="disabled")
     age_type = st.radio("Choose a value you want to look for 👇",
-                        ["Oldest Age", "Median Age", "Youngest Age"],
-                        key="Age type")
+                        ["Oldest age", "Median age", "Youngest age"],
+                        key="visibility",
+                        # label_visibility= "visible",
+                        disabled= st.session_state.disabled)
 with col2:
-    rank = st.selectbox("Rank", ("HIGHEST", "LOWEST"))
+    rank = st.selectbox("Rank", ("Maximum", "Minimum"), key="rank",
+                        # label_visibility= "visible",
+                        disabled= st.session_state.disabled)
 with col3:
-    st.write("You would like to see the {} value of the {}.".format(rank, age_type))
+    if overview:
+        st.write("Below is all categories.")
+    else:
+        st.write("Below is the category with")
+        st.write("the {} value of the {} in each group.".format(rank.lower(), age_type.lower()))
+        st.write(":green[**Note: Outlier values are accepted.**]")
 
 # Create a container for displaying the boxplots
 with tab2.container():
+    
+    # define a function to find the category as requested
+    def find_category(data, age_type, rank):
+        if age_type == "Oldest age":
+            if rank == "Maximum":
+                category = data.groupby('Category')['Age'].max().idxmax()
+            else:
+                category = data.groupby('Category')['Age'].max().idxmin()
+        elif age_type == "Median age":
+            if rank == "Maximum":
+                category = data.groupby('Category')['Age'].median().idxmax()
+            else:
+                category = data.groupby('Category')['Age'].median().idxmin()
+        elif age_type == "Youngest age":
+            if rank == "Maximum":
+                category = data.groupby('Category')['Age'].min().idxmax()
+            else:
+                category = data.groupby('Category')['Age'].min().idxmin()
+        return category
+    
     # Create two columns for displaying the boxplots
     box1, box2 = tab2.columns(2)
     with box1:
-        # Create a subset of data for Physics, Medicine, and Chemistry categories
-        physics_med_chem = data_sorted[data_sorted['Category'].isin(['Chemistry', 'Physics', 'Medicine'])]
-        fig1 = px.box(physics_med_chem, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        fig1.update_layout(showlegend=False)  # Remove legend from the first plot
-         # Specify the order of categories in the x-axis
-        fig1.update_xaxes(categoryorder='array', categoryarray=['Chemistry', 'Physics', 'Medicine'])
+        if overview:
+            fig1 = px.box(nat, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+            fig1.update_layout(showlegend=False)  # Remove legend from the first plot
+        else:
+            nat_cat = find_category(nat, age_type, rank)
+            nat_display_cat = nat[nat['Category'].isin([nat_cat])]
+            fig1 = px.box(nat_display_cat, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+            fig1.update_layout(showlegend=False)  # Remove legend from the first plot
+
         st.plotly_chart(fig1, use_container_width=True)
 
         # Add label below the first boxplot
         st.subheader("Natural Sciences")
 
     with box2:
-        # Create a subset of data for Literature, Peace, and Economics categories
-        lit_peace_econ = data_sorted[data_sorted['Category'].isin(['Literature', 'Peace', 'Economics'])]
-        fig2 = px.box(lit_peace_econ, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
-        fig2.update_layout(showlegend=False)  # Remove legend from the second plot
-        fig1.update_xaxes(categoryorder='array', categoryarray=['Peace', 'Literature', 'Economics'])
+        if overview:
+            fig2 = px.box(soc, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+            fig2.update_layout(showlegend=False)  # Remove legend from the second plot
+        else:
+            soc_cat = find_category(soc, age_type, rank)
+            soc_display_cat = soc[soc['Category'].isin([soc_cat])]
+            fig2 = px.box(soc_display_cat, y="Age", x="Category", color="Category", color_discrete_map=category_colors)
+            fig2.update_layout(showlegend=False)  # Remove legend from the second plot
+
         st.plotly_chart(fig2, use_container_width=True)
 
         # Add label below the second boxplot
