@@ -141,7 +141,7 @@ with col3:
     if overview:
         st.write("Below is all categories.")
     else:
-        st.write("Below is the category with")
+        st.write("Below are all categories with")
         st.write("the {} value of the {} in each group.".format(rank.lower(), age_type.lower()))
         st.write(":green[**Note: Outlier values are accepted.**]")
 
